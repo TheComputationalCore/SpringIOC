@@ -93,19 +93,19 @@ sequenceDiagram
     C->>U: index.html
 
     U->>C: GET /add-product
-    C->>U: add-product.html
+    C->>U: addproduct.html
 
     U->>C: POST /add-product
     C->>S: saveProduct(product)
     S->>R: save(product)
     R->>DB: INSERT
-    C->>U: redirect to /
+    C->>U: redirect:/ 
 
     U->>C: GET /display-products?category=...
     C->>S: getProducts(...)
     S->>R: findByCategory() OR findAll()
     R->>DB: SELECT
-    C->>U: display-products.html
+    C->>U: displayproduct.html
 ```
 
 ---
@@ -143,8 +143,8 @@ src/
  │   └── resources/
  │         ├── templates/
  │         │     ├── index.html
- │         │     ├── add-product.html
- │         │     └── display-products.html
+ │         │     ├── addproduct.html
+ │         │     └── displayproduct.html
  │         ├── application.properties
  │         └── static/
  │
@@ -158,10 +158,10 @@ src/
 
 | URL | Method | Description | View |
 |-----|--------|-------------|-------|
-| `/` | GET | Homepage | index.html |
-| `/add-product` | GET | Show product form | add-product.html |
+| `/` | GET | Homepage | index |
+| `/add-product` | GET | Show product form | addproduct |
 | `/add-product` | POST | Save new product | redirect:/ |
-| `/display-products` | GET | Display all or filtered by category | display-products.html |
+| `/display-products` | GET | Display all or filtered | displayproduct |
 
 ---
 
@@ -213,7 +213,7 @@ Use:
 
 | Key | Value |
 |-----|-------|
-| JDBC URL | jdbc:h2:mem:productdb |
+| JDBC URL | jdbc:h2:mem:productdb;DB_CLOSE_ON_EXIT=FALSE |
 | Username | sa |
 | Password | *(empty)* |
 
@@ -225,8 +225,8 @@ Use:
 Caused by template naming mismatch.  
 Ensure:
 ```
-add-product.html == return "add-product"
-display-products.html == return "display-products"
+return "addproduct";  → templates/addproduct.html
+return "displayproduct"; → templates/displayproduct.html
 ```
 
 ### ⚠ H2 Shutdown Error
@@ -242,4 +242,4 @@ MIT License.
 
 ---
 
-✨ *This README is crafted to be professional, recruiter‑friendly, and portfolio‑ready — showcasing your Spring IOC, DI, MVC, JPA, and Thymeleaf skills in the best possible way.*  
+
